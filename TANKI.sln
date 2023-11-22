@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TANKI_server", "TANKI_server\TANKI_server.csproj", "{FEA4B5F8-5598-4A9C-B54A-1DCC4DC3AD99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TANKI_client", "TANKI_client\TANKI_client.csproj", "{3343E8D5-B142-4D96-A807-588E30E8D6B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEA4B5F8-5598-4A9C-B54A-1DCC4DC3AD99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA4B5F8-5598-4A9C-B54A-1DCC4DC3AD99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA4B5F8-5598-4A9C-B54A-1DCC4DC3AD99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA4B5F8-5598-4A9C-B54A-1DCC4DC3AD99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3343E8D5-B142-4D96-A807-588E30E8D6B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3343E8D5-B142-4D96-A807-588E30E8D6B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3343E8D5-B142-4D96-A807-588E30E8D6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3343E8D5-B142-4D96-A807-588E30E8D6B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3D873CA-89F0-4CD1-8EB6-C7FD16496673}
+	EndGlobalSection
+EndGlobal
