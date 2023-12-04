@@ -8,10 +8,10 @@ namespace TANKI_server
 {
     internal class Tank
     {
-        private int Health = 0;
-        private int Speed = 0;
-        private int[] Position = new int[2];
-        private int AngleOfRotation = 0;
+        protected int Health = 0;
+        protected int Speed = 0;
+        protected int[] Position = new int[2];
+        protected int AngleOfRotation = 0;
 
         public Tank()
         {
