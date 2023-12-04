@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TANKI_client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-        
+        <Canvas Background="BlanchedAlmond">
+            <Rectangle x:Name="Tank" Canvas.Top = "20" Canvas.Left="20" Width="25" Height="55" Fill="Black" RadiusX="10" RadiusY="10"/>
+        </Canvas>
+
+
     </Grid>
 </Window>

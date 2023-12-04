@@ -23,6 +23,8 @@ namespace TANKI_client
 		public MainWindow()
 		{
 			InitializeComponent();
+			Canvas.SetLeft(Tank, 100);
+			Tank.RenderTransform = new RotateTransform(45);
 		}
 	}
 }
