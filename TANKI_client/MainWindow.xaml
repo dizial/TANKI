@@ -6,11 +6,8 @@
         xmlns:local="clr-namespace:TANKI_client"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <Grid>
-        <Canvas Background="BlanchedAlmond">
-            <Rectangle x:Name="Tank" Canvas.Top = "20" Canvas.Left="20" Width="25" Height="55" Fill="Black" RadiusX="10" RadiusY="10"/>
-        </Canvas>
+    <Canvas x:Name="Field" Background="BlanchedAlmond" Grid.RowSpan="2" KeyDown="KeyDown" KeyUp="KeyUp" Focusable="True">
+        <Rectangle x:Name="Tank" Canvas.Top = "20" Canvas.Left="20" Width="25" Height="55" Fill="Black" RadiusX="10" RadiusY="10"/>
 
-
-    </Grid>
+    </Canvas>
 </Window>
