@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
+using System.Windows;
+
 
 namespace TANKI_server
 {
@@ -82,7 +84,7 @@ namespace TANKI_server
             catch
             {
 
-                MessageBox.Show("нет соединения/ ошибка");
+				Console.Write("нет соединения/ ошибка");
             }
         }
         public void acceptfunc(object parametr)
@@ -100,7 +102,7 @@ namespace TANKI_server
                 }
                 catch(Exception E)
                 {
-                    MessageBox.Show(E.Message);
+                   Console.Write(E.Message);
                 }
                
                 if (bytesRec > 0)
