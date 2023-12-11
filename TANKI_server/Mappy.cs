@@ -18,7 +18,7 @@ namespace TANKI_server
         //public Dictionary<int, int> Scores = new Dictionary<int, int>();
         //public List<Bullet> Bullets = new List<Bullet>();
         public List<Object> SpawnPoints = new List<Object>();
-        readonly private string MapAdress = "C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt";
+        readonly private string MapAdress = "MapStartConfig.txt";
 		public void CreateTank(int ID)
         {
             Tank tank = new Tank();
