@@ -3,10 +3,146 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TANKI_client"
+        xmlns:local="clr-namespace:TANKI_client" d:DataContext="{d:DesignInstance Type=local:MainVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="640" Width="588">
+    <Window.InputBindings>
+        <KeyBinding Key="W" Command="{Binding Command}" CommandParameter=" MoveForward"/>
+        <KeyBinding Key="A" Command="{Binding Command}" CommandParameter="TurnLeft"/>
+        <KeyBinding Key="S" Command="{Binding Command}" CommandParameter="MoveBackward "/>
+        <KeyBinding Key="D" Command="{Binding Command}" CommandParameter="TurnRight"/>
+        <KeyBinding Key="Space" Command="{Binding Command}" CommandParameter="Fire"/>
+    </Window.InputBindings>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="textBoxIp" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Center" Text="127.0.0.1" Width="100" />
+            <TextBox x:Name="textBoxPort" Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Center" Text="8000" Width="50" />
+            <TextBox x:Name="playerName" Grid.Row="0" Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" Text="PlayerName" Width="100" />
+            <Label Content="Счет:" Grid.Column="4"/>
+            <Label x:Name="ScoreBar" Content="{Binding Score}" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" Width="100" Grid.ColumnSpan="2" />
+            <Label Content="Прочность:" Grid.Column="6"/>
+            <Label x:Name="HealthBar" Content="{Binding Health}" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Left" Width="100" />
+            <Button x:Name="ConnectButton" Grid.Row ="0" Grid.Column="3" Width="100" HorizontalAlignment="Center" Content="Подключиться" Click="Button_Click" />
+        </Grid>
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding BattleField}" AlternationCount="121" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ItemsControl ItemsSource="{Binding}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding State}" Value="Tank">
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                                <Border Width="50" Height="50" Margin="1" BorderThickness="0">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding State}" Value="TankUp">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/tankUp.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="TankDown">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/tankDown.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="TankLeft">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/tankLeft.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="TankRight">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/tankRight.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="BulletUp">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/bulletUp.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="BulletDown">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/bulletDown.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="BulletLeft">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/bulletLeft.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="BulletRight">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/bulletRight.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="Wall">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/wall.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="Empty">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="/empty.png" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </Window>

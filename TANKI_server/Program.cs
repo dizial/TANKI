@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using TANKI_server;
+
+var server = new Server();
+server.Socketinit();
