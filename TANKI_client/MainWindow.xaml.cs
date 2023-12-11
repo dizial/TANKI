@@ -209,7 +209,12 @@ namespace TANKI_client
 		public void Reg() // регистрация на сервере
 		{
 			var endPoint = new IPEndPoint(localAddress, port);
-			var message = "Name:" + playerName.Text;
+			string message;
+			if (playerName.Text != null) 
+			{
+				message = "Name:" + playerName.Text;
+			}
+			message = "Name:" + "PLAYER1123";
 
 			byte[] data = Encoding.UTF8.GetBytes(message);
 			socket.SendTo(data, endPoint);
