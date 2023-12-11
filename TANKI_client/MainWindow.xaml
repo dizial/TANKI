@@ -25,14 +25,19 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="textBoxIp" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Left" Text="127.0.0.1" Width="100" />
-            <TextBox x:Name="textBoxPort" Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Left" Text="8000" Width="50" />
-            <TextBox x:Name="playerName" Grid.Row="0" Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Left" Text="PlayerName" Width="100" />
+            <TextBox x:Name="textBoxIp" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Center" Text="127.0.0.1" Width="100" />
+            <TextBox x:Name="textBoxPort" Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Center" Text="8000" Width="50" />
+            <TextBox x:Name="playerName" Grid.Row="0" Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" Text="PlayerName" Width="100" />
             <Label Content="Счет:" Grid.Column="4"/>
-            <TextBox Text="NC" Grid.Row="0" Grid.Column="5" TextAlignment="Center" HorizontalAlignment="Left" Width="100" />
-            <Button x:Name="ConnectButton" Grid.Row ="0" Grid.Column="3" Width="100" HorizontalAlignment="Left" Content="Подключиться" Click="Button_Click" />
+            <Label x:Name="ScoreBar" Content="{Binding Score}" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" Width="100" Grid.ColumnSpan="2" />
+            <Label Content="Прочность:" Grid.Column="6"/>
+            <Label x:Name="HealthBar" Content="{Binding Health}" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Left" Width="100" />
+            <Button x:Name="ConnectButton" Grid.Row ="0" Grid.Column="3" Width="100" HorizontalAlignment="Center" Content="Подключиться" Click="Button_Click" />
         </Grid>
         <ItemsControl Grid.Row="2" ItemsSource="{Binding BattleField}" AlternationCount="121" >
             <ItemsControl.ItemTemplate>

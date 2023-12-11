@@ -18,7 +18,7 @@ namespace TANKI_server
         //public Dictionary<int, int> Scores = new Dictionary<int, int>();
         //public List<Bullet> Bullets = new List<Bullet>();
         public List<Object> SpawnPoints = new List<Object>();
-        readonly private StreamReader sr = new StreamReader("C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt");
+        readonly private string MapAdress = "C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt";
 		public void CreateTank(int ID)
         {
             Tank tank = new Tank();
@@ -67,7 +67,7 @@ namespace TANKI_server
         public string GetMapAndID(int ID)
         {
             string tmp;
-            //StreamReader sr = new StreamReader("C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt");
+            StreamReader sr = new StreamReader(MapAdress);
             return tmp = ID + "\n"+ sr.ReadToEnd();
         }
         public Tank GetTankByID(int ID)
@@ -86,7 +86,7 @@ namespace TANKI_server
             
             try
             {
-                //StreamReader sr = new StreamReader("C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt"); // серверу надо прописать путь где будет хранится карта
+                StreamReader sr = new StreamReader(MapAdress); // серверу надо прописать путь где будет хранится карта
                for(int LineIndex = 0; LineIndex <= 10; LineIndex++)
                { 
                     line = sr.ReadLine();
@@ -269,8 +269,10 @@ namespace TANKI_server
             tank.HP -= Bullet.Damage;
             if (tank.HP <= 0)
             {
-                
-                Tanks[bullet.OwnerID].Score += 100;
+                tank.Score -= 50;
+				if (tank.Score <= 0)
+					tank.Score = 0;
+				Tanks[bullet.OwnerID].Score += 100;
                 tank.TimeSinceDeath = DateTime.Now;
             }
         }

@@ -15,6 +15,8 @@ namespace TANKI_client
 		private ICommand _Command;
 		private string _commandToSend;
 		private bool newCommand;
+		private int _score;
+		private int _health;
 		private int width = 11;
 		private int height = 11;
 		public MainVM()
@@ -29,6 +31,36 @@ namespace TANKI_client
 				_battlefield = value;
 				OnPropertyChanged();
 			}
+		}
+
+		public int Score
+		{
+			get { return _score; } 
+			set
+			{
+				_score = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public void SetScore(int score)
+		{
+			Score = score;
+		}
+
+		public int Health
+		{
+			get { return _health; }
+			set
+			{
+				_health = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public void SetHealth(int health)
+		{
+			Health = health;
 		}
 
 		public ICommand Command => _Command ?? new RelayCommand(parameter =>
@@ -104,11 +136,11 @@ namespace TANKI_client
 				switch (cellState)
 				{
 					case '1':
-						_battlefield[MapColumn][MapRow].State = CellState.Wall;
+						_battlefield[MapRow][MapColumn].State = CellState.Wall;
 						MapColumn++;
 						break;
 					case '0':
-						_battlefield[MapColumn][MapRow].State = CellState.Empty;
+						_battlefield[MapRow][MapColumn].State = CellState.Empty;
 						MapColumn++;
 						break;
 					case '\n':
@@ -118,5 +150,35 @@ namespace TANKI_client
 				}
 			}
 		}
+
+		public void SetBF(string newMap)
+		{
+			int MapColumn = 0, MapRow = 0;
+			foreach (var cellState in newMap)
+			{
+				switch (cellState)
+				{
+					case '1':
+						BattleField[MapRow][MapColumn].State = CellState.Wall;
+						MapColumn++;
+						break;
+					case '0':
+						BattleField[MapRow][MapColumn].State = CellState.Empty;
+						MapColumn++;
+						break;
+					case '*':
+						BattleField[MapRow][MapColumn].State = CellState.Empty;
+						MapColumn++;
+						break;
+					case '\n':
+						MapRow++;
+						MapColumn = 0;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
 	}
 }

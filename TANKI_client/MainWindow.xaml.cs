@@ -25,10 +25,13 @@ namespace TANKI_client
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 		private MainVM vm = new MainVM();
+
+		private Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 		private IPAddress localAddress;
 		private int port;
+		private int myID;
+		private bool initMessage = true;
 		public MainWindow()
 		{
 
@@ -66,15 +69,23 @@ namespace TANKI_client
 				vm.ClearMap();
 
 				string InformationFromServer = Encoding.UTF8.GetString(bytes);
-				if (InformationFromServer[0] == '0')
-					InformationFromServer = "0";
+				if (initMessage)
+				{
+					myID = Convert.ToInt32(InformationFromServer[0].ToString());
+					string newMap = InformationFromServer.Substring(2);
+					if (newMap != null)
+						vm.SetBF(newMap);
+					initMessage = false;
+				}
 				string[] IFSparse = InformationFromServer.Split(';');
 
 				int indexOfDD;
 				int count;
 
-				string tmpStringCoordX = "";
-				string tmpStringCoordY = "";
+				string tmpStringCoordX;
+				string tmpStringCoordY;
+				string tmpStringHp;
+				string tmpStringScore;
 				int tmpDirection;
 				CellState tmpCellState;
 				
@@ -82,6 +93,37 @@ namespace TANKI_client
 				{
 					tmpStringCoordX = "";
 					tmpStringCoordY = "";
+					//score
+					if (s[0] == 's')
+					{
+						if (Convert.ToInt32(s[1].ToString()) == myID)
+						{
+							tmpStringScore = "";
+							count = 3;
+							while (count != s.Length)
+							{
+								tmpStringScore += s[count];
+								count++;
+								
+							}
+							vm.SetScore(Convert.ToInt32(tmpStringScore));
+						}
+					}
+					//hp
+					if (s[0] == 'h')
+					{
+						if (Convert.ToInt32(s[1].ToString()) == myID)
+						{
+							tmpStringHp = "";
+							count = 3;
+							while (count != s.Length)
+							{
+								tmpStringHp += s[count];
+								count++;
+							}
+							vm.SetHealth(Convert.ToInt32(tmpStringHp));
+						}
+					}
 					//bullet
 					if (s[0] == 'b')
 					{
