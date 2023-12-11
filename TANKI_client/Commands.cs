@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameServer
+namespace TANKI_client
 {
-    class Obstacle : Object // препятствие 
-    {
-        
-    }
- 
+	public enum Commands
+	{
+		MoveForward,
+		MoveBackward,
+		TurnLeft,
+		TurnRight,
+		Fire
+	}
 }

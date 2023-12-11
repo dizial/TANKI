@@ -7,7 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
-using System.Windows;
 
 
 namespace TANKI_server
@@ -83,7 +82,6 @@ namespace TANKI_server
             }
             catch
             {
-
 				Console.Write("нет соединения/ ошибка");
             }
         }

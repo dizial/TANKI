@@ -18,7 +18,8 @@ namespace TANKI_server
         //public Dictionary<int, int> Scores = new Dictionary<int, int>();
         //public List<Bullet> Bullets = new List<Bullet>();
         public List<Object> SpawnPoints = new List<Object>();
-        public void CreateTank(int ID)
+        readonly private StreamReader sr = new StreamReader("C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt");
+		public void CreateTank(int ID)
         {
             Tank tank = new Tank();
             tank.LastActionTime = DateTime.Now;
@@ -66,7 +67,7 @@ namespace TANKI_server
         public string GetMapAndID(int ID)
         {
             string tmp;
-            StreamReader sr = new StreamReader("B:\\game\\MapStartConfig.txt");
+            //StreamReader sr = new StreamReader("C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt");
             return tmp = ID + "\n"+ sr.ReadToEnd();
         }
         public Tank GetTankByID(int ID)
@@ -85,7 +86,7 @@ namespace TANKI_server
             
             try
             {
-                StreamReader sr = new StreamReader("B:\\game\\MapStartConfig.txt"); // серверу надо прописать путь где будет хранится карта
+                //StreamReader sr = new StreamReader("C:\\Users\\Denis\\Source\\Repos\\dizial\\TANKI\\TANKI_server\\MapStartConfig.txt"); // серверу надо прописать путь где будет хранится карта
                for(int LineIndex = 0; LineIndex <= 10; LineIndex++)
                { 
                     line = sr.ReadLine();
@@ -203,7 +204,7 @@ namespace TANKI_server
             Console.WriteLine(obj.Direction + ";" + obj.TargetDirection);
         }
         /*  public void TurnRight(Object obj)
-          {                                    // значение направлений
+          {                                             // значение направлений
               obj.Direction = (obj.Direction + 1) % 4; //      2
           }                                            //1             3       
                                                        //      0
@@ -270,7 +271,6 @@ namespace TANKI_server
             {
                 
                 Tanks[bullet.OwnerID].Score += 100;
-                tank.Score -= 100;
                 tank.TimeSinceDeath = DateTime.Now;
             }
         }
